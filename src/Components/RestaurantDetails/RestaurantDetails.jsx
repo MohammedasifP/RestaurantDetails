@@ -3,18 +3,25 @@ import './RestaurantDetails.css'
 
 
 export const RestaurantDetails=()=>{
-const [resdata,setResdata]=useState([])    
+const [resdata,setResdata]=useState([]);
+const [page,setpage]=useState(1);    
 
  useEffect(()=>{
    getdata()
- },[])   
+ },[page])   
 
 const getdata=()=>{
-    fetch("http://localhost:3000/Restaurants").then(Response=>Response.json()).then(data=>setResdata(data))
+    fetch(`http://localhost:3000/Restaurants?_limit=5&_page=${page}`).then(Response=>Response.json()).then(data=>setResdata(data))
 } 
 
 return(
     <div>
+      <div className="pagination">
+      <button onClick={()=>{setpage(1)}}>1</button>
+      <button onClick={()=>{setpage(2)}}>2</button>
+      <button onClick={()=>{setpage(3)}}>3</button>
+      <button onClick={()=>{setpage(4)}}>4</button>
+      </div>
         {resdata.map((elem)=>{
             return (
               <div>
