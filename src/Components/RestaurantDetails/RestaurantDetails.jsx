@@ -4,16 +4,27 @@ import './RestaurantDetails.css'
 
 export const RestaurantDetails=()=>{
 const [resdata,setResdata]=useState([]);
-const [page,setpage]=useState(1);    
+const [page,setpage]=useState(1); 
+const [star,setStar]=useState(null)   
 
  useEffect(()=>{
    getdata()
  },[page])   
 
 const getdata=()=>{
-    fetch(`http://localhost:3000/Restaurants?_limit=5&_page=${page}`).then(Response=>Response.json()).then(data=>setResdata(data))
+    fetch(`http://localhost:3000/Restaurants?_limit=4&_page=${page}`).then(Response=>Response.json()).then(data=>setResdata(data))
 } 
 
+const Starfun=(value)=>{
+     setStar(value)
+     getstar()
+}
+
+const getstar=()=>{
+    fetch(`http://localhost:3000/Restaurants?rating=${star}`).then(Response=>Response.json()).then(data=>setResdata(data))
+} 
+// http://localhost:3000/Restaurants?_sort=name&_order=asc
+// http://localhost:3000/Restaurants?rating=${1}
 return(
     <div>
       <div className="pagination">
@@ -21,6 +32,13 @@ return(
       <button onClick={()=>{setpage(2)}}>2</button>
       <button onClick={()=>{setpage(3)}}>3</button>
       <button onClick={()=>{setpage(4)}}>4</button>
+      </div>
+      <div className="stars">
+      <button onClick={()=>{Starfun(1)}}>1 star</button>
+      <button onClick={()=>{Starfun(2)}}>2 star</button>
+      <button onClick={()=>{Starfun(3)}}>3 star</button>
+      <button onClick={()=>{Starfun(4)}}>4 star</button>
+      <button onClick={()=>{Starfun(5)}}>5 star</button>
       </div>
         {resdata.map((elem)=>{
             return (
