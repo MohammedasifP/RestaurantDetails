@@ -53,3 +53,14 @@ img{
     margin-left: 40px;
     margin-top: 5px;
 }
+.order{
+    height: 40px;
+    background-color: teal;
+    text-align: center;
+}
+.order>button{
+    width: 50px;
+    height: 30px;
+    margin-left: 40px;
+    margin-top: 5px;
+}

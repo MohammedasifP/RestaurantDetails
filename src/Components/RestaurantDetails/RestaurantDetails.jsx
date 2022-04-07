@@ -7,6 +7,7 @@ const [resdata,setResdata]=useState([]);
 const [page,setpage]=useState(1); 
 const [star,setStar]=useState(null); 
 const [payment,setPayment]=useState("");
+const [order,setOrder]=useState("");
 
  useEffect(()=>{
    getdata()
@@ -33,7 +34,18 @@ const getpayment=()=>{
     fetch(`http://localhost:3000/Restaurants?Payment_methods=${payment}`).then(Response=>Response.json()).then(data=>setResdata(data))
 
 }
+
+const orderfun=(sort)=>{
+    setOrder(sort)
+    getorder()
+ }
+ const getorder=()=>{
+    fetch(`http://localhost:3000/Restaurants?_sort=cost_for_two&_order=${order}`).then(Response=>Response.json()).then(data=>setResdata(data))
+
+}
 // http://localhost:3000/Restaurants?_sort=name&_order=asc
+
+
 
 return(
     <div>
@@ -55,7 +67,10 @@ return(
           <button onClick={()=>{paymentfun("card")}}>card</button>
           <button onClick={()=>{getdata()}}>all</button>
       </div>
-      
+      <div className="order">
+          <button onClick={()=>{orderfun("asc")}}>asc</button>
+          <button onClick={()=>{orderfun("desc")}}>desc</button>
+      </div>
         {resdata.map((elem)=>{
             return (
               <div>
