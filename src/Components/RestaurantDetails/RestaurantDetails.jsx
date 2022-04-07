@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { Link } from "react-router-dom";
 import './RestaurantDetails.css'
 
 
@@ -52,23 +53,15 @@ const orderfun=(sort)=>{
 
 return(
     <div>
+    <Link to="/addrestaurant">Add Restaurant</Link>
       <div className="pagination">
-      <button onClick={()=>{
+      <button disabled={page===1} onClick={()=>{
                 if(page>1){
                     setpage(page-1)
                 }
-                else{
-                    alert("this is the first page")
-                }
             }}>Prev</button>
-            <button onClick={()=>{
-                if(page<Math.ceil((totaldata.length)/4)){
+            <button disabled={page===Math.ceil((totaldata.length)/4)} onClick={()=>{
                     setpage(page+1)
-                }
-                else{
-                    alert("you have reached to end")
-                }
-                
             }}>Next</button>
       </div>
       <div className="stars">
