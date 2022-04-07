@@ -1,0 +1,20 @@
+.flex1{
+    display: flex;
+    justify-content: space-between;
+}
+.flex2{
+    display: flex;
+    width: 50%;
+    border: 1px sili;
+}
+.flex2_div1{
+    width: 50%;
+}
+.flex2_div2{
+    margin-left: 100px;
+}
+
+img{
+    width: 400px;
+    height: 200px;
+}

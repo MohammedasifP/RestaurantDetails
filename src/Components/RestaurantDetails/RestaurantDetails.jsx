@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import './RestaurantDetails.css'
 
 
 export const RestaurantDetails=()=>{
@@ -17,11 +18,11 @@ return(
         {resdata.map((elem)=>{
             return (
               <div>
-                  <div className="">
-                    <div>
-                        <div>
+                  <div className="flex1">
+                    <div className="flex2">
+                        <div className="flex2_div1">
                         <img src={elem.img_url}/></div>
-                        <div>
+                        <div className="flex2_div2">
                             <h2>{elem.name}</h2>
                             <p>{elem.categories}</p>
                             <p>cost for two: ${elem.cost_for_two}</p>
@@ -30,12 +31,12 @@ return(
                         </div>
                     </div>
                     <div>
-                        <p>{elem.rating}</p>
-                        <p>{elem.votes}</p>
-                        <p>{elem.reviews}</p>
+                        <p>{elem.rating}:rating</p>
+                        <p>{elem.votes}:votes</p>
+                        <p>{elem.reviews}:reviews</p>
                     </div>
-                    <hr/>
-                  </div>
+                 </div>
+                 <hr/>
               </div>
             )
         })}
