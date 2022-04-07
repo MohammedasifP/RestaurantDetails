@@ -5,6 +5,7 @@ import './RestaurantDetails.css'
 export const RestaurantDetails=()=>{
 const [resdata,setResdata]=useState([]);
 const [page,setpage]=useState(1); 
+const [totaldata,setTotaldata]=useState([])
 const [star,setStar]=useState(null); 
 const [payment,setPayment]=useState("");
 const [order,setOrder]=useState("");
@@ -14,8 +15,13 @@ const [order,setOrder]=useState("");
  },[page])   
 
 const getdata=()=>{
-    fetch(`http://localhost:3000/Restaurants?_limit=4&_page=${page}`).then(Response=>Response.json()).then(data=>setResdata(data))
+    fetch(`http://localhost:3000/Restaurants?_limit=4&_page=${page}`).then(Response=>Response.json()).then(data=>setResdata(data));
 } 
+useEffect(()=>{
+    
+        fetch('http://localhost:3000/Restaurants').then(Response=>Response.json()).then(data=>setTotaldata(data));
+
+},[])
 
 const Starfun=(value)=>{
      setStar(value)
@@ -43,17 +49,27 @@ const orderfun=(sort)=>{
     fetch(`http://localhost:3000/Restaurants?_sort=cost_for_two&_order=${order}`).then(Response=>Response.json()).then(data=>setResdata(data))
 
 }
-// http://localhost:3000/Restaurants?_sort=name&_order=asc
-
-
 
 return(
     <div>
       <div className="pagination">
-      <button onClick={()=>{setpage(1)}}>1</button>
-      <button onClick={()=>{setpage(2)}}>2</button>
-      <button onClick={()=>{setpage(3)}}>3</button>
-      <button onClick={()=>{setpage(4)}}>4</button>
+      <button onClick={()=>{
+                if(page>1){
+                    setpage(page-1)
+                }
+                else{
+                    alert("this is the first page")
+                }
+            }}>Prev</button>
+            <button onClick={()=>{
+                if(page<Math.ceil((totaldata.length)/4)){
+                    setpage(page+1)
+                }
+                else{
+                    alert("you have reached to end")
+                }
+                
+            }}>Next</button>
       </div>
       <div className="stars">
       <button onClick={()=>{Starfun(1)}}>1 star</button>
@@ -73,7 +89,7 @@ return(
       </div>
         {resdata.map((elem)=>{
             return (
-              <div>
+              <div key={elem.id}>
                   <div className="flex1">
                     <div className="flex2">
                         <div className="flex2_div1">
