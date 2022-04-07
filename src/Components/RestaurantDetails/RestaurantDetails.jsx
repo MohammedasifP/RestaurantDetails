@@ -53,8 +53,9 @@ const orderfun=(sort)=>{
 
 return(
     <div>
-    <Link to="/addrestaurant">Add Restaurant</Link>
+    
       <div className="pagination">
+      <Link to="/addrestaurant">Add Restaurant</Link>
       <button disabled={page===1} onClick={()=>{
                 if(page>1){
                     setpage(page-1)

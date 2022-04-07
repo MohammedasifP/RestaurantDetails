@@ -7,8 +7,11 @@ import { AddRestaurant } from './Components/AddRestaurant/AddRestaurant';
 function App() {
   return (
     <div className="App">
-      <RestaurantDetails/>
-       <Routes><Route path="/addrestaurant" element={<AddRestaurant/>} /></Routes> 
+      
+       <Routes>
+       <Route path="/" element={<RestaurantDetails/>}></Route>
+       <Route path="/addrestaurant" element={<AddRestaurant/>} />
+       </Routes> 
     </div>
   );
 }

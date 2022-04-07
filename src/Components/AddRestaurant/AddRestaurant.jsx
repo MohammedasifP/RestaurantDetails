@@ -13,19 +13,19 @@ const handlechange=(e)=>{
 }
 
 console.log(formdata)
-// const senddata=(e)=>{
-//   e.preventDefault();
-//   fetch("http://localhost:3000/employees",{
-//                 method:"POST",
-//                 body:JSON.stringify(formdata),
-//                 headers:{"content-type":"application/json"}})
-//                 showdata()
-// }
+const senddata=(e)=>{
+  e.preventDefault();
+  fetch("http://localhost:3000/Restaurants",{
+                method:"POST",
+                body:JSON.stringify(formdata),
+                headers:{"content-type":"application/json"}})
+                
+}
 
 
  
 return (
-       <div id="container">
+       <div id="container" onSubmit={senddata}>
          <form >
        <label>Enter Restaurant name</label>
        <input type="text" id={"name"}  onChange={handlechange}/><h6></h6>
